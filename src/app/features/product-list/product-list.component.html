@@ -19,7 +19,12 @@
       <td>{{ product.vendor.name }}</td>
       <td>{{ product.partNumber }}</td>
       <td>{{ product.unit }}</td>
-      <td><a routerLink="/product/detail/{{ product.id }}">Details</a></td>
+      <td>
+        <a routerLink="/product/detail/{{ product.id }}">Details</a> |
+        <a routerLink="/product/list" (click)="deleteProduct(product.id)"
+          >Delete</a
+        >
+      </td>
     </tr>
   </tbody>
 </table>

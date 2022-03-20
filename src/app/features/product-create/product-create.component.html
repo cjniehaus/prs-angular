@@ -5,7 +5,7 @@
     id="vendor"
     [(ngModel)]="product.vendor.id"
   >
-    <option *ngFor="let vendor of vendors" value="{{ vendor.id }}">
+    <option *ngFor="let vendor of vendors" value="{{ vendor.id }}" required>
       {{ vendor.name }}
     </option>
   </select>
