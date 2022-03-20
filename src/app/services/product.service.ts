@@ -32,4 +32,10 @@ export class ProductService {
   createProduct(product: Product): Observable<Product[]> {
     return this.http.post<Product[]>(this.url, product)
   }
+
+  //http://localhost:8080/products/{id}
+  deleteById(id: number): Observable<Product[]> {
+    let requestUrl = this.url + '/' + id
+    return this.http.delete<Product[]>(requestUrl)
+  }
 }
