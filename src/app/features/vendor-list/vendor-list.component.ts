@@ -26,4 +26,13 @@ export class VendorListComponent implements OnInit {
     )
   }
 
+  deleteVendor(id: number) {
+    this.vendorService.deleteById(id).subscribe(
+      data => {
+        this.ngOnInit()
+      },
+      error => { console.log(error) }
+    )
+  }
+
 }
