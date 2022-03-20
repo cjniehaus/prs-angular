@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 import { Vendor } from 'src/app/models/vendor.models';
 import { ProductService } from 'src/app/services/product.service';
+import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
   selector: 'app-product-create',
@@ -12,12 +13,21 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductCreateComponent implements OnInit {
 
   product: Product = new Product()
-  vendor: Vendor = new Vendor()
+  vendors: Vendor[] = [];
 
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private vendorService: VendorService,
+    private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.product)
+
+    this.vendorService.getAll().subscribe(
+      data => {
+        this.vendors = data
+        console.log(data)
+      },
+      error => { console.log(error) }
+    )
   }
 
   createProduct() {

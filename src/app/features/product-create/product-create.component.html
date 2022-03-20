@@ -1,29 +1,14 @@
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="vendor">Vendor:</label>
-  <div class="dropdown">
-    <button
-      class="btn btn-secondary dropdown-toggle"
-      type="button"
-      id="dropdownMenuButton"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      Vendor List
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-list"></a>
-    </div>
-  </div>
-  <input
+  <select
     class="form-control col-sm-6"
-    type="text"
-    [(ngModel)]="product.vendor.name"
-    name="Vendor"
     id="vendor"
-    placeholder="Vendor"
-    required
-  />
+    [(ngModel)]="product.vendor.id"
+  >
+    <option *ngFor="let vendor of vendors" value="{{ vendor.id }}">
+      {{ vendor.name }}
+    </option>
+  </select>
 </div>
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="partNumber">Part Number:</label>
