@@ -38,4 +38,10 @@ export class UserService {
     let requestUrl = this.url + '/' + id
     return this.http.delete<User[]>(requestUrl)
   }
+
+  //http://localhost:8080/users/{id}
+  editById(user: User): Observable<User[]> {
+    let requestUrl = this.url + '/' + user.id
+    return this.http.put<User[]>(requestUrl, user)
+  }
 }

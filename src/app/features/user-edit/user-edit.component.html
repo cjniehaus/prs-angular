@@ -7,7 +7,6 @@
     name="Username"
     id="username"
     placeholder="Username"
-    disabled
   />
 </div>
 <div class="form-group row">
@@ -19,7 +18,6 @@
     name="Password"
     id="password"
     placeholder="Password"
-    disabled
   />
 </div>
 <div class="form-group row">
@@ -31,7 +29,6 @@
     name="Firstname"
     id="firstname"
     placeholder="Firstname"
-    disabled
   />
 </div>
 <div class="form-group row">
@@ -43,7 +40,6 @@
     name="Lastname"
     id="lastname"
     placeholder="Lastname"
-    disabled
   />
 </div>
 <div class="form-group row">
@@ -55,7 +51,6 @@
     name="Phonenumber"
     id="phonenumber"
     placeholder="Phonenumber"
-    disabled
   />
 </div>
 <div class="form-group row">
@@ -67,7 +62,6 @@
     name="Email"
     id="email"
     placeholder="Email"
-    disabled
   />
 </div>
 <div class="form-group row">
@@ -81,7 +75,6 @@
       value=""
       id="reviewer"
       placeholder="Reviewer"
-      disabled
     />
   </div>
 </div>
@@ -96,17 +89,9 @@
       value=""
       id="admin"
       placeholder="Admin"
-      disabled
     />
   </div>
 </div>
-<button
-  type="button"
-  routerLink="/user/edit/{{ user.id }}"
-  class="btn btn-warning mb-2"
->
-  Edit
-</button>
-<button type="button" (click)="deleteUser()" class="btn btn-danger mb-2">
-  Delete
+<button type="button" (click)="editUser()" class="btn btn-success mb-2">
+  Save
 </button>
