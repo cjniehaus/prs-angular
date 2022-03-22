@@ -38,4 +38,10 @@ export class VendorService {
     let requestUrl = this.url + '/' + id
     return this.http.delete<Vendor[]>(requestUrl)
   }
+
+  //http://localhost:8080/vendors/{id}
+  editById(vendor: Vendor): Observable<Vendor[]> {
+    let requestUrl = this.url + '/' + vendor.id
+    return this.http.put<Vendor[]>(requestUrl, vendor)
+  }
 }
