@@ -1,14 +1,16 @@
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="vendor">Vendor:</label>
-  <input
+  <select
     class="form-control col-sm-6"
-    type="text"
-    [(ngModel)]="product.vendor.name"
-    name="Vendor"
     id="vendor"
-    placeholder="Vendor"
-    disabled
-  />
+    name="Vendor"
+    [(ngModel)]="product.vendor"
+    [compareWith]="compareFn"
+  >
+    <option *ngFor="let vendor of vendors" [ngValue]="vendor" required>
+      {{ vendor.name }}
+    </option>
+  </select>
 </div>
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="partNumber">Part Number:</label>
@@ -19,7 +21,7 @@
     name="PartNumber"
     id="partNumber"
     placeholder="PartNumber"
-    disabled
+    required
   />
 </div>
 <div class="form-group row">
@@ -31,7 +33,7 @@
     name="Name"
     id="name"
     placeholder="Name"
-    disabled
+    required
   />
 </div>
 <div class="form-group row">
@@ -39,12 +41,11 @@
   <input
     class="form-control col-sm-6"
     type="text"
-    [ngModel]="product.price | currency"
-    (ngModelChange)="product.price = $event"
+    [(ngModel)]="product.price"
     name="Price"
     id="price"
     placeholder="Price"
-    disabled
+    required
   />
 </div>
 <div class="form-group row">
@@ -56,7 +57,6 @@
     name="Unit"
     id="unit"
     placeholder="Unit"
-    disabled
   />
 </div>
 <div class="form-group row">
@@ -68,16 +68,8 @@
     name="PhotoPath"
     id="photoPath"
     placeholder="PhotoPath"
-    disabled
   />
 </div>
-<button
-  type="button"
-  routerLink="/product/edit/{{ product.id }}"
-  class="btn btn-warning mb-2"
->
-  Edit
-</button>
-<button type="button" (click)="deleteProduct()" class="btn btn-danger mb-2">
-  Delete
+<button type="button" (click)="editProduct()" class="btn btn-success mb-2">
+  Save
 </button>
