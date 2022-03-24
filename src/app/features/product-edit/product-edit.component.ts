@@ -56,7 +56,7 @@ export class ProductEditComponent implements OnInit {
   editProduct() {
     this.productService.editById(this.product).subscribe(
       data => {
-        this.router.navigateByUrl('/product/list')
+        this.router.navigateByUrl('/product/detail/' + this.product.id)
       },
       error => { console.log(error) }
     )

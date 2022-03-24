@@ -36,7 +36,7 @@ export class VendorEditComponent implements OnInit {
   editVendor() {
     this.vendorService.editById(this.vendor).subscribe(
       data => {
-        this.router.navigateByUrl('/vendor/list')
+        this.router.navigateByUrl('/vendor/detail/' + this.vendor.id)
       },
       error => { console.log(error) }
     )
