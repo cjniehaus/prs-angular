@@ -20,6 +20,7 @@ import { VendorCreateComponent } from './features/vendor-create/vendor-create.co
 import { ProductCreateComponent } from './features/product-create/product-create.component';
 import { UserEditComponent } from './features/user-edit/user-edit.component';
 import { VendorEditComponent } from './features/vendor-edit/vendor-edit.component';
+import { ProductEditComponent } from './features/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { VendorEditComponent } from './features/vendor-edit/vendor-edit.componen
     VendorCreateComponent,
     ProductCreateComponent,
     UserEditComponent,
-    VendorEditComponent
+    VendorEditComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,

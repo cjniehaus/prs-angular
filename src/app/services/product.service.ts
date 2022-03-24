@@ -38,4 +38,10 @@ export class ProductService {
     let requestUrl = this.url + '/' + id
     return this.http.delete<Product[]>(requestUrl)
   }
+
+  //http://localhost:8080/products/{id}
+  editById(product: Product): Observable<Product[]> {
+    let requestUrl = this.url + '/' + product.id
+    return this.http.put<Product[]>(requestUrl, product)
+  }
 }
