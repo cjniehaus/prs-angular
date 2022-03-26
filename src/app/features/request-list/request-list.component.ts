@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Request } from 'src/app/models/request.model';
 import { RequestService } from 'src/app/services/request.service';
+import { SystemService } from 'src/app/services/system.service';
 
 @Component({
   selector: 'app-request-list',
@@ -13,17 +14,36 @@ export class RequestListComponent implements OnInit {
   requests: Request[] = [];
 
   //Inject service using constructor injection
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private systemService: SystemService) { }
 
   ngOnInit(): void {
     //Subscribe to the observable from the service
-    this.requestService.getAll().subscribe(
+    const loggedInUser = this.systemService.loggedInUser
+    if (loggedInUser && loggedInUser.admin) {
+      this.requestService.getAll().subscribe(
+        data => {
+          this.requests = data
+          console.log(data)
+        },
+        error => { console.log(error) }
+      )
+    } else if (loggedInUser && !loggedInUser.admin) {
+      this.requestService.getAllByUser(loggedInUser).subscribe(
+        data => {
+          this.requests = data
+          console.log(data)
+        },
+        error => { console.log(error) }
+      )
+    }
+  }
+
+  deleteRequest(id: number) {
+    this.requestService.deleteRequest(id).subscribe(
       data => {
-        this.requests = data
-        console.log(data)
+        this.ngOnInit()
       },
       error => { console.log(error) }
     )
   }
-
 }

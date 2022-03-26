@@ -5,6 +5,8 @@ import { ProductCreateComponent } from './features/product-create/product-create
 import { ProductDetailComponent } from './features/product-detail/product-detail.component';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
 import { ProductListComponent } from './features/product-list/product-list.component';
+import { RequestCreateComponent } from './features/request-create/request-create.component';
+import { RequestDetailComponent } from './features/request-detail/request-detail.component';
 import { RequestListComponent } from './features/request-list/request-list.component';
 import { UserAuthenticateComponent } from './features/user-authenticate/user-authenticate.component';
 import { UserCreateComponent } from './features/user-create/user-create.component';
@@ -18,11 +20,11 @@ import { VendorListComponent } from './features/vendor-list/vendor-list.componen
 
 const routes: Routes = [
   { path: '', component: AboutComponent },
+  { path: 'login', component: UserAuthenticateComponent },
   { path: 'user/list', component: UserListComponent },
   { path: 'user/detail/:id', component: UserDetailComponent },
   { path: 'user/create', component: UserCreateComponent },
   { path: 'user/edit/:id', component: UserEditComponent },
-  { path: 'user/authenticate', component: UserAuthenticateComponent },
   { path: 'vendor/list', component: VendorListComponent },
   { path: 'vendor/detail/:id', component: VendorDetailComponent },
   { path: 'vendor/create', component: VendorCreateComponent },
@@ -32,6 +34,8 @@ const routes: Routes = [
   { path: 'product/create', component: ProductCreateComponent },
   { path: 'product/edit/:id', component: ProductEditComponent },
   { path: 'request/list', component: RequestListComponent },
+  { path: 'request/create', component: RequestCreateComponent },
+  { path: 'request/detail/:id', component: RequestDetailComponent },
   { path: '**', component: AboutComponent }
 ];
 

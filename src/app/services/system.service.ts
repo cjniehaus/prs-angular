@@ -6,7 +6,7 @@ import { User } from '../models/user.model';
 })
 export class SystemService {
 
-  loggedInUser: User | null = null
+  loggedInUser?: User = undefined
 
   constructor() { }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Request } from '../models/request.model';
+import { User } from '../models/user.model';
 
 //configure base url
 const requestRoute = "/requests"
@@ -22,9 +23,24 @@ export class RequestService {
     return this.http.get<Request[]>(requestUrl)
   }
 
+  getAllByUser(user: User): Observable<Request[]> {
+    return this.http.put<Request[]>(this.url, user)
+  }
+
   //http://localhost:8080/requests/{id}
   getById(id: number): Observable<Request[]> {
     let requestUrl = this.url + '/' + id
     return this.http.get<Request[]>(requestUrl)
+  }
+
+  //http://localhost:8080/requests
+  createRequest(request: Request): Observable<Request[]> {
+    return this.http.post<Request[]>(this.url, request)
+  }
+
+  //http://localhost:8080/requests/{id}
+  deleteRequest(id: number): Observable<Request[]> {
+    let requestUrl = this.url + '/' + id
+    return this.http.delete<Request[]>(requestUrl)
   }
 }

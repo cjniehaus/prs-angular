@@ -12,7 +12,7 @@ export class Request {
   submittedDate: Date;
   reasonForRejection: string;
 
-  constructor(id: number = 0, user: User, description: string = '',
+  constructor(id: number = 0, user: User = new User(), description: string = '',
   justification: string = '', dateNeeded: Date = new Date(), deliveryMode: string = '',
   status: string = '', total: number = 0, submittedDate: Date = new Date(), reasonForRejection: string = '') {
     this.id = id;
