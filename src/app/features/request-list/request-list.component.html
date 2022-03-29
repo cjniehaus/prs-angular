@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let request of requests">
-      <td>{{ request.user.firstName }} {{ request.user.lastName }}</td>
+      <td>{{ request.user.lastName }}, {{ request.user.firstName }}</td>
       <td>{{ request.description }}</td>
       <td>{{ request.submittedDate | date }}</td>
       <td>{{ request.dateNeeded | date }}</td>
@@ -21,6 +21,7 @@
       <td>{{ request.status }}</td>
       <td>
         <a routerLink="/request/detail/{{ request.id }}">Details</a> |
+        <a routerLink="/request/lines/{{ request.id }}">Lines</a> |
         <a routerLink="/request/list" (click)="deleteRequest(request.id)"
           >Delete</a
         >

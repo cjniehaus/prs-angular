@@ -24,6 +24,8 @@ import { ProductEditComponent } from './features/product-edit/product-edit.compo
 import { UserAuthenticateComponent } from './features/user-authenticate/user-authenticate.component';
 import { RequestCreateComponent } from './features/request-create/request-create.component';
 import { RequestDetailComponent } from './features/request-detail/request-detail.component';
+import { RequestLinesComponent } from './features/request-lines/request-lines.component';
+import { LineItemCreateComponent } from './features/line-item-create/line-item-create.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { RequestDetailComponent } from './features/request-detail/request-detail
     ProductEditComponent,
     UserAuthenticateComponent,
     RequestCreateComponent,
-    RequestDetailComponent
+    RequestDetailComponent,
+    RequestLinesComponent,
+    LineItemCreateComponent
   ],
   imports: [
     BrowserModule,

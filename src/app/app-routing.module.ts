@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './features/about/about.component';
+import { LineItemCreateComponent } from './features/line-item-create/line-item-create.component';
 import { ProductCreateComponent } from './features/product-create/product-create.component';
 import { ProductDetailComponent } from './features/product-detail/product-detail.component';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
 import { ProductListComponent } from './features/product-list/product-list.component';
 import { RequestCreateComponent } from './features/request-create/request-create.component';
 import { RequestDetailComponent } from './features/request-detail/request-detail.component';
+import { RequestLinesComponent } from './features/request-lines/request-lines.component';
 import { RequestListComponent } from './features/request-list/request-list.component';
 import { UserAuthenticateComponent } from './features/user-authenticate/user-authenticate.component';
 import { UserCreateComponent } from './features/user-create/user-create.component';
@@ -35,7 +37,9 @@ const routes: Routes = [
   { path: 'product/edit/:id', component: ProductEditComponent },
   { path: 'request/list', component: RequestListComponent },
   { path: 'request/create', component: RequestCreateComponent },
+  { path: 'request/lines/:id', component: RequestLinesComponent },
   { path: 'request/detail/:id', component: RequestDetailComponent },
+  { path: 'lines/create/:id', component: LineItemCreateComponent },
   { path: '**', component: AboutComponent }
 ];
 
