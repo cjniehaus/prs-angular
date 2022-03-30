@@ -43,4 +43,10 @@ export class RequestService {
     let requestUrl = this.url + '/' + id
     return this.http.delete<Request[]>(requestUrl)
   }
+
+  //http://localhost:8080/requests/{id}
+  editById(request: Request): Observable<Request[]> {
+    let requestUrl = this.url + '/' + request.id
+    return this.http.put<Request[]>(requestUrl, request)
+  }
 }
