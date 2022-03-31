@@ -30,7 +30,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let lineItem of lineItems">
-      <td>{{ lineItem.product.name }}</td>
+      <td>{{ lineItem.product.name }} | {{ lineItem.product.vendor.name }}</td>
       <td>{{ lineItem.quantity }}</td>
       <td>{{ lineItem.product.price * lineItem.quantity | currency }}</td>
       <td>

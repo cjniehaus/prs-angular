@@ -20,4 +20,8 @@ export class LineItemService {
   getAllByRequest(request: Request): Observable<LineItem[]> {
     return this.http.put<LineItem[]>(this.url, request)
   }
+
+  createItem(lineItem: LineItem): Observable<LineItem[]> {
+    return this.http.post<LineItem[]>(this.url, lineItem)
+  }
 }
