@@ -24,4 +24,9 @@ export class LineItemService {
   createItem(lineItem: LineItem): Observable<LineItem[]> {
     return this.http.post<LineItem[]>(this.url, lineItem)
   }
+
+  deleteItem(id: number): Observable<LineItem[]> {
+    let requestUrl = this.url + '/' + id
+    return this.http.delete<LineItem[]>(requestUrl)
+  }
 }

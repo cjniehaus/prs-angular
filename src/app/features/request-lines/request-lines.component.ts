@@ -13,6 +13,7 @@ import { RequestService } from 'src/app/services/request.service';
 export class RequestLinesComponent implements OnInit {
 
   request: Request = new Request()
+  lineItem: LineItem = new LineItem()
   requestId: number = 0
   lineItems: LineItem[] = []
 
@@ -37,6 +38,15 @@ export class RequestLinesComponent implements OnInit {
           },
           error => console.log(error)
         )
+      },
+      error => console.log(error)
+    )
+  }
+
+  deleteItem(id: number) {
+    this.lineItemService.deleteItem(id).subscribe(
+      data => {
+        this.ngOnInit()
       },
       error => console.log(error)
     )
