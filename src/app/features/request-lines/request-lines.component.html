@@ -34,7 +34,7 @@
       <td>{{ lineItem.quantity }}</td>
       <td>{{ lineItem.product.price * lineItem.quantity | currency }}</td>
       <td>
-        <a routerLink="/request/detail/{{ request.id }}">Edit</a> |
+        <a routerLink="/lines/edit/{{ lineItem.id }}">Edit</a> |
         <a
           routerLink="/request/lines/{{ request.id }}"
           (click)="deleteItem(lineItem.id)"

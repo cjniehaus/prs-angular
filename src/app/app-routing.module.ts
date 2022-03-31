@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './features/about/about.component';
 import { LineItemCreateComponent } from './features/line-item-create/line-item-create.component';
+import { LineItemEditComponent } from './features/line-item-edit/line-item-edit.component';
 import { ProductCreateComponent } from './features/product-create/product-create.component';
 import { ProductDetailComponent } from './features/product-detail/product-detail.component';
 import { ProductEditComponent } from './features/product-edit/product-edit.component';
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'request/detail/:id', component: RequestDetailComponent },
   { path: 'request/edit/:id', component: RequestEditComponent },
   { path: 'lines/create/:id', component: LineItemCreateComponent },
+  { path: 'lines/edit/:id', component: LineItemEditComponent },
   { path: '**', component: AboutComponent }
 ];
 

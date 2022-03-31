@@ -21,6 +21,11 @@ export class LineItemService {
     return this.http.put<LineItem[]>(this.url, request)
   }
 
+  getById(id: number): Observable<LineItem[]> {
+    let requestUrl = this.url + '/' + id
+    return this.http.get<LineItem[]>(requestUrl)
+  }
+
   createItem(lineItem: LineItem): Observable<LineItem[]> {
     return this.http.post<LineItem[]>(this.url, lineItem)
   }
@@ -28,5 +33,10 @@ export class LineItemService {
   deleteItem(id: number): Observable<LineItem[]> {
     let requestUrl = this.url + '/' + id
     return this.http.delete<LineItem[]>(requestUrl)
+  }
+
+  editById(lineItem: LineItem): Observable<LineItem[]> {
+    let requestUrl = this.url + '/' + lineItem.id
+    return this.http.put<LineItem[]>(requestUrl, lineItem)
   }
 }

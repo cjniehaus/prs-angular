@@ -5,8 +5,9 @@
     id="product"
     name="Product"
     [(ngModel)]="lineItem.product"
+    [compareWith]="compareFn"
   >
-    <option *ngFor="let product of products" [ngValue]="product" required>
+    <option *ngFor="let product of products" [ngValue]="product" disabled>
       {{ product.name }} | {{ product.vendor.name }}
     </option>
   </select>
@@ -23,6 +24,6 @@
     required
   />
 </div>
-<button type="button" class="btn btn-success mb-2" (click)="createItem()">
-  Create
+<button type="button" class="btn btn-success mb-2" (click)="editItem()">
+  Save
 </button>
