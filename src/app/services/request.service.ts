@@ -49,4 +49,29 @@ export class RequestService {
     let requestUrl = this.url + '/' + request.id
     return this.http.put<Request[]>(requestUrl, request)
   }
+
+  setStatusReview(request: Request): Observable<Request[]> {
+    let requestUrl = this.url + '/status-review/' + request.id
+    return this.http.post<Request[]>(requestUrl, request)
+  }
+
+  setStatusApproved(request: Request): Observable<Request[]> {
+    let requestUrl = this.url + '/status-approved/' + request.id
+    return this.http.post<Request[]>(requestUrl, request)
+  }
+
+  setStatusRejected(request: Request): Observable<Request[]> {
+    let requestUrl = this.url + '/status-rejected/' + request.id
+    return this.http.post<Request[]>(requestUrl, request)
+  }
+
+  setStatusReopened(request: Request): Observable<Request[]> {
+    let requestUrl = this.url + '/status-reopened/' + request.id
+    return this.http.post<Request[]>(requestUrl, request)
+  }
+
+  getAllForReview(user: User): Observable<Request[]> {
+    let requestUrl = this.url + '/review'
+    return this.http.put<Request[]>(requestUrl, user)
+  }
 }

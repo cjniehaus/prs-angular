@@ -14,36 +14,41 @@
     </tr>
   </tbody>
 </table>
-<button
-  type="button"
-  class="btn btn-success mb-2"
-  routerLink="/lines/create/{{ request.id }}"
->
-  Add Line Item
-</button>
 <table class="table table-striped">
   <thead>
     <th scope="col">Product</th>
     <th scope="col">Quantity</th>
     <th scope="col">Price</th>
-    <th scope="col">Actions</th>
   </thead>
   <tbody>
     <tr *ngFor="let lineItem of lineItems">
       <td>{{ lineItem.product.name }} | {{ lineItem.product.vendor.name }}</td>
       <td>{{ lineItem.quantity }}</td>
       <td>{{ lineItem.product.price * lineItem.quantity | currency }}</td>
-      <td>
-        <a routerLink="/lines/edit/{{ lineItem.id }}">Edit</a> |
-        <a
-          routerLink="/request/lines/{{ request.id }}"
-          (click)="deleteItem(lineItem.id)"
-          >Delete</a
-        >
-      </td>
     </tr>
   </tbody>
 </table>
-<button type="button" class="btn btn-primary mb-2" (click)="setStatusReview()">
-  Submit
-</button>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <button
+      type="button"
+      class="btn btn-primary mb-2"
+      (click)="approveRequest()"
+    >
+      Approve
+    </button>
+  </div>
+  <input
+    class="form-control col-sm-3"
+    type="text"
+    [(ngModel)]="request.reasonForRejection"
+    name="ReasonForRejection"
+    id="reasonForRejection"
+    placeholder="ReasonForRejection"
+  />
+  <div class="input-group-append">
+    <button type="button" class="btn btn-danger mb-2" (click)="rejectRequest()">
+      Reject
+    </button>
+  </div>
+</div>

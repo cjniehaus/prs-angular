@@ -6,11 +6,11 @@ import { LineItemService } from 'src/app/services/line-item.service';
 import { RequestService } from 'src/app/services/request.service';
 
 @Component({
-  selector: 'app-request-lines',
-  templateUrl: './request-lines.component.html',
-  styleUrls: ['./request-lines.component.css']
+  selector: 'app-request-approve',
+  templateUrl: './request-approve.component.html',
+  styleUrls: ['./request-approve.component.css']
 })
-export class RequestLinesComponent implements OnInit {
+export class RequestApproveComponent implements OnInit {
 
   request: Request = new Request()
   lineItem: LineItem = new LineItem()
@@ -43,21 +43,22 @@ export class RequestLinesComponent implements OnInit {
     )
   }
 
-  deleteItem(id: number) {
-    this.lineItemService.deleteItem(id).subscribe(
+  approveRequest() {
+    this.requestService.setStatusApproved(this.request).subscribe(
       data => {
-        this.ngOnInit()
+        this.router.navigateByUrl('/request/review')
       },
       error => console.log(error)
     )
   }
 
-  setStatusReview() {
-    this.requestService.setStatusReview(this.request).subscribe(
+  rejectRequest() {
+    this.requestService.setStatusRejected(this.request).subscribe(
       data => {
-        this.router.navigateByUrl('request/list')
+        this.router.navigateByUrl('/request/review')
       },
       error => console.log(error)
     )
   }
+
 }
