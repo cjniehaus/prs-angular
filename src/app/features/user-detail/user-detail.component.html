@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="username">Username:</label>
   <input
@@ -100,13 +101,15 @@
     />
   </div>
 </div>
-<button
-  type="button"
-  routerLink="/user/edit/{{ user.id }}"
-  class="btn btn-warning mb-2"
->
-  Edit
-</button>
-<button type="button" (click)="deleteUser()" class="btn btn-danger mb-2">
-  Delete
-</button>
+<div *ngIf="loggedInUser.admin">
+  <button
+    type="button"
+    routerLink="/user/edit/{{ user.id }}"
+    class="btn btn-warning mb-2"
+  >
+    Edit
+  </button>
+  <button type="button" (click)="deleteUser()" class="btn btn-danger mb-2">
+    Delete
+  </button>
+</div>

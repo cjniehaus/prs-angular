@@ -1,4 +1,10 @@
-<button type="button" class="btn btn-success mb-2" routerLink="/vendor/create">
+<app-menu></app-menu>
+<button
+  type="button"
+  class="btn btn-success mb-2"
+  *ngIf="loggedInUser.admin"
+  routerLink="/vendor/create"
+>
   Add New Vendor
 </button>
 <table class="table table-striped">
@@ -24,7 +30,10 @@
       <td>{{ vendor.email }}</td>
       <td>
         <a routerLink="/vendor/detail/{{ vendor.id }}">Details</a> |
-        <a routerLink="/vendor/list" (click)="deleteVendor(vendor.id)"
+        <a
+          routerLink="/vendor/list"
+          *ngIf="loggedInUser.admin"
+          (click)="deleteVendor(vendor.id)"
           >Delete</a
         >
       </td>

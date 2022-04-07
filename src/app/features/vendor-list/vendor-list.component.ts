@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 import { Vendor } from 'src/app/models/vendor.models';
+import { SystemService } from 'src/app/services/system.service';
 import { VendorService } from 'src/app/services/vendor.service';
 
 @Component({
@@ -11,9 +13,10 @@ export class VendorListComponent implements OnInit {
 
   //Keeping track of our list of vendors
   vendors: Vendor[] = [];
+  loggedInUser: User = new User()
 
   //Inject service using constructor injection
-  constructor(private vendorService: VendorService) { }
+  constructor(private vendorService: VendorService, private systemService: SystemService) { }
 
   ngOnInit(): void {
     //subscribe to the observable from the service
@@ -24,6 +27,10 @@ export class VendorListComponent implements OnInit {
       },
       error => { console.log(error) }
     )
+
+    if (this.systemService.loggedInUser != undefined) {
+      this.loggedInUser = this.systemService.loggedInUser
+      }
   }
 
   deleteVendor(id: number) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Request } from 'src/app/models/request.model';
+import { User } from 'src/app/models/user.model';
 import { RequestService } from 'src/app/services/request.service';
 import { SystemService } from 'src/app/services/system.service';
 
@@ -12,14 +13,19 @@ export class RequestListComponent implements OnInit {
 
   //Keeping track of our list of requests
   requests: Request[] = [];
+  loggedInUser: User = new User()
+  user?: User = undefined
+
 
   //Inject service using constructor injection
   constructor(private requestService: RequestService, private systemService: SystemService) { }
 
   ngOnInit(): void {
     //Subscribe to the observable from the service
-    const loggedInUser = this.systemService.loggedInUser
-    if (loggedInUser && loggedInUser.admin) {
+    if (this.systemService.loggedInUser != undefined) {
+      this.loggedInUser = this.systemService.loggedInUser
+    }
+    if (this.loggedInUser && this.loggedInUser.admin) {
       this.requestService.getAll().subscribe(
         data => {
           this.requests = data
@@ -27,8 +33,8 @@ export class RequestListComponent implements OnInit {
         },
         error => { console.log(error) }
       )
-    } else if (loggedInUser && !loggedInUser.admin) {
-      this.requestService.getAllByUser(loggedInUser).subscribe(
+    } else if (this.loggedInUser && !this.loggedInUser.admin) {
+      this.requestService.getAllByUser(this.loggedInUser).subscribe(
         data => {
           this.requests = data
           console.log(data)
@@ -36,6 +42,8 @@ export class RequestListComponent implements OnInit {
         error => { console.log(error) }
       )
     }
+
+    this.user = this.systemService.loggedInUser
   }
 
   deleteRequest(id: number) {

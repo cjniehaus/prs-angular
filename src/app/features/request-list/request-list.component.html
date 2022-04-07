@@ -1,4 +1,10 @@
-<button type="button" class="btn btn-success mb-2" routerLink="/request/create">
+<app-menu></app-menu>
+<button
+  type="button"
+  class="btn btn-success mb-2"
+  *ngIf="user != undefined"
+  routerLink="/request/create"
+>
   Create New Request
 </button>
 <table class="table table-striped">
@@ -22,7 +28,10 @@
       <td>
         <a routerLink="/request/detail/{{ request.id }}">Details</a> |
         <a routerLink="/request/lines/{{ request.id }}">Lines</a> |
-        <a routerLink="/request/list" (click)="deleteRequest(request.id)"
+        <a
+          *ngIf="loggedInUser.admin || this.request.user"
+          routerLink="/request/list"
+          (click)="deleteRequest(request.id)"
           >Delete</a
         >
       </td>

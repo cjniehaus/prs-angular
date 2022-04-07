@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <table class="table table-striped">
   <thead>
     <th scope="col">User</th>
@@ -18,6 +19,7 @@
   type="button"
   class="btn btn-success mb-2"
   routerLink="/lines/create/{{ request.id }}"
+  *ngIf="this.request.status === 'New' || this.request.status === 'Reopened'"
 >
   Add Line Item
 </button>
@@ -33,7 +35,11 @@
       <td>{{ lineItem.product.name }} | {{ lineItem.product.vendor.name }}</td>
       <td>{{ lineItem.quantity }}</td>
       <td>{{ lineItem.product.price * lineItem.quantity | currency }}</td>
-      <td>
+      <td
+        *ngIf="
+          this.request.status === 'New' || this.request.status === 'Reopened'
+        "
+      >
         <a routerLink="/lines/edit/{{ lineItem.id }}">Edit</a> |
         <a
           routerLink="/request/lines/{{ request.id }}"
@@ -44,6 +50,19 @@
     </tr>
   </tbody>
 </table>
-<button type="button" class="btn btn-primary mb-2" (click)="setStatusReview()">
+<button
+  type="button"
+  class="btn btn-primary mb-2"
+  (click)="setStatusReview()"
+  *ngIf="this.request.status === 'New' || this.request.status === 'Reopened'"
+>
   Submit
+</button>
+<button
+  type="button"
+  class="btn btn-primary mb-2"
+  (click)="setStatusReopen()"
+  *ngIf="this.request.status === 'Rejected'"
+>
+  Reopen
 </button>

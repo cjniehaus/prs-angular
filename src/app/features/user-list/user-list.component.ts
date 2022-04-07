@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SystemService } from 'src/app/services/system.service';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 
@@ -11,9 +12,10 @@ export class UserListComponent implements OnInit {
 
   //Keeping track of our list of users
   users: User[] = [];
+  loggedInUser: User = new User()
 
   //Inject service using constructor injection
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private systemService: SystemService) { }
 
   ngOnInit(): void {
     //subscribe to the observable from the service
@@ -24,6 +26,10 @@ export class UserListComponent implements OnInit {
       },
       error => { console.log(error) }
     )
+
+    if (this.systemService.loggedInUser != undefined) {
+      this.loggedInUser = this.systemService.loggedInUser
+      }
   }
 
   deleteUser(id: number) {

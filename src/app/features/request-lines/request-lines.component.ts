@@ -53,9 +53,28 @@ export class RequestLinesComponent implements OnInit {
   }
 
   setStatusReview() {
-    this.requestService.setStatusReview(this.request).subscribe(
+    if (this.request.total <= 50) {
+      this.requestService.setStatusApproved(this.request).subscribe(
+        data => {
+          this.router.navigateByUrl('request/list')
+        },
+        error => console.log(error)
+      )
+    } else {
+      this.requestService.setStatusReview(this.request).subscribe(
+        data => {
+          this.router.navigateByUrl('request/list')
+        },
+        error => console.log(error)
+      )
+    }
+  }
+
+  setStatusReopen() {
+    this.requestService.setStatusReopened(this.request).subscribe(
       data => {
-        this.router.navigateByUrl('request/list')
+        this.router.navigateByUrl('request/lines/' + this.request.id)
+        this.ngOnInit()
       },
       error => console.log(error)
     )

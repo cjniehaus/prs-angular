@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { SystemService } from 'src/app/services/system.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,9 +13,10 @@ export class UserDetailComponent implements OnInit {
 
   user: User = new User()
   userId: number = 0
+  loggedInUser: User = new User()
 
   constructor(private userService: UserService, private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router, private systemService: SystemService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -31,6 +33,10 @@ export class UserDetailComponent implements OnInit {
         )
       }
     )
+
+    if (this.systemService.loggedInUser != undefined) {
+      this.loggedInUser = this.systemService.loggedInUser
+      }
   }
 
   deleteUser() {

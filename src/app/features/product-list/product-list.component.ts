@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { User } from 'src/app/models/user.model';
 import { ProductService } from 'src/app/services/product.service';
+import { SystemService } from 'src/app/services/system.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,9 +13,10 @@ export class ProductListComponent implements OnInit {
 
   //Keeping track of our list of products
   products: Product[] = [];
+  loggedInUser: User = new User()
 
   //Inject service using constructor injection
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private systemService: SystemService) { }
 
   ngOnInit(): void {
     //subscribe to the observable from the service
@@ -24,6 +27,10 @@ export class ProductListComponent implements OnInit {
       },
       error => { console.log(error) }
     )
+
+    if (this.systemService.loggedInUser != undefined) {
+      this.loggedInUser = this.systemService.loggedInUser
+      }
   }
 
   deleteProduct(id: number) {

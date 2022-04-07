@@ -1,4 +1,10 @@
-<button type="button" class="btn btn-success mb-2" routerLink="/product/create">
+<app-menu></app-menu>
+<button
+  type="button"
+  class="btn btn-success mb-2"
+  *ngIf="loggedInUser.admin"
+  routerLink="/product/create"
+>
   Add New Product
 </button>
 <table class="table table-striped">
@@ -21,7 +27,10 @@
       <td>{{ product.unit }}</td>
       <td>
         <a routerLink="/product/detail/{{ product.id }}">Details</a> |
-        <a routerLink="/product/list" (click)="deleteProduct(product.id)"
+        <a
+          routerLink="/product/list"
+          *ngIf="loggedInUser.admin"
+          (click)="deleteProduct(product.id)"
           >Delete</a
         >
       </td>

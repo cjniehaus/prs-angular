@@ -10,17 +10,25 @@ import { SystemService } from 'src/app/services/system.service';
 export class MenuComponent implements OnInit {
 
   user?: User = undefined
+  // loggedInUser: User = new User()
 
   constructor(private systemService: SystemService) { }
 
   ngOnInit(): void {
+    // if (this.systemService.loggedInUser != undefined) {
+    //   this.loggedInUser = this.systemService.loggedInUser
+    // }
     this.user = this.systemService.loggedInUser
+  }
+
+  logout() {
+    this.systemService.loggedInUser = undefined
   }
 
   navbarCollapsed = true;
 
   toggleNavbarCollapsing() {
     this.navbarCollapsed = !this.navbarCollapsed;
-}
+  }
 
 }

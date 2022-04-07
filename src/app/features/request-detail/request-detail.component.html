@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="user">User:</label>
   <input
@@ -62,17 +63,26 @@
     disabled
   />
 </div>
-<button
-  type="button"
-  routerLink="/request/edit/{{ request.id }}"
-  class="btn btn-warning mb-2"
+<div
+  *ngIf="
+    (request.status === 'New' && request.user) ||
+    (request.status === 'New' && loggedInUser.admin) ||
+    (request.status === 'Reopened' && request.user) ||
+    (request.status === 'Reopened' && loggedInUser.admin)
+  "
 >
-  Edit
-</button>
-<button
-  type="button"
-  (click)="deleteRequest(request.id)"
-  class="btn btn-danger mb-2"
->
-  Delete
-</button>
+  <button
+    type="button"
+    routerLink="/request/edit/{{ request.id }}"
+    class="btn btn-warning mb-2"
+  >
+    Edit
+  </button>
+  <button
+    type="button"
+    (click)="deleteRequest(request.id)"
+    class="btn btn-danger mb-2"
+  >
+    Delete
+  </button>
+</div>

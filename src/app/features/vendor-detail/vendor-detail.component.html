@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="code">Code:</label>
   <input
@@ -94,13 +95,15 @@
     disabled
   />
 </div>
-<button
-  type="button"
-  routerLink="/vendor/edit/{{ vendor.id }}"
-  class="btn btn-warning mb-2"
->
-  Edit
-</button>
-<button type="button" (click)="deleteVendor()" class="btn btn-danger mb-2">
-  Delete
-</button>
+<div *ngIf="loggedInUser.admin">
+  <button
+    type="button"
+    routerLink="/vendor/edit/{{ vendor.id }}"
+    class="btn btn-warning mb-2"
+  >
+    Edit
+  </button>
+  <button type="button" (click)="deleteVendor()" class="btn btn-danger mb-2">
+    Delete
+  </button>
+</div>
